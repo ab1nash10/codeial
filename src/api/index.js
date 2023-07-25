@@ -85,3 +85,11 @@ export const editProfile = (userId ,name, password, confirmPassword) => {
     },
   });
 }
+
+
+
+export const fetchUser = (userId) => {
+  return customFetch(API_URLS.userInfo(userId), {
+    method: 'GET',
+  });
+};
