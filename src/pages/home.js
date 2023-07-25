@@ -1,12 +1,11 @@
 import styles from '../styles/home.module.css';
 import PropTypes from 'prop-types';
-import { Comment ,Loader } from '../components';
+import { Comment, Loader } from '../components';
 import { useEffect, useState } from 'react';
 import { getPosts } from '../api';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -24,12 +23,10 @@ const Home = () => {
     fetchPosts();
   }, []);
 
-  if(loading) {
-    return <Loader />
+  if (loading) {
+    return <Loader />;
   }
 
-
-  
   return (
     <div className={styles.postsList}>
       {posts.map((post) => (
@@ -41,25 +38,21 @@ const Home = () => {
                 alt="user-pic"
               />
               <div>
-              <Link
-                  to={{
-                    pathname: `/user/${post.user._id}`,
-                    state: 
-                    { 
-                      user: post.user,
-                    },
-                  }}
+                <Link
+                  to={`/user/${post.user._id}`}
+                  state={{ user: post.user }}
                   className={styles.postAuthor}
                 >
                   {post.user.name}
                 </Link>
+
                 <span className={styles.postTime}>a minute ago</span>
               </div>
             </div>
             <div className={styles.postContent}>{post.content}</div>
 
             <div className={styles.postActions}>
-              <div className={styles.postLike}> 
+              <div className={styles.postLike}>
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/9790/9790408.png"
                   alt="likes-icon"

@@ -3,9 +3,10 @@ import { useLocation } from 'react-router-dom';
 
 
 export const UserProfile = () => {
-    const location = useLocation();
-    console.log('location', location);
-    const { user } = location.state ?? {};
+  const location = useLocation();
+  console.log('location', location);
+  const { user = {} } = location.state;
+
 
   return (
     <div className={styles.settings}>
