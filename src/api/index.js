@@ -93,3 +93,10 @@ export const fetchUser = (userId) => {
     method: 'GET',
   });
 };
+
+
+export const fetchUserfriends = () => {
+  return customFetch( API_URLS.friends(), {
+    method: 'GET',
+  });
+};

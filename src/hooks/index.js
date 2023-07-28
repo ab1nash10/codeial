@@ -1,5 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
-import { editProfile, register, login as userLogin } from '../api';
+import {
+  editProfile,
+  fetchUserfriends,
+  register,
+  login as userLogin,
+} from '../api';
 import { AuthContext } from '../providers/AuthProvider';
 import {
   LOCALSTORAGE_TOKEN_KEY,
@@ -18,13 +23,28 @@ export const useProvideAuth = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const userToken = getItemInLocalStorage(LOCALSTORAGE_TOKEN_KEY);
-    if (userToken) {
-      const user = jwt(userToken);
-      console.log('user', user);
-      setUser(user);
-    }
-    setLoading(false);
+    const getUser = async () => {
+      const userToken = getItemInLocalStorage(LOCALSTORAGE_TOKEN_KEY);
+
+      if (userToken) {
+        const user = jwt(userToken);
+        const response = await fetchUserfriends();
+
+        let friends = [];
+
+        if (response.success) {
+          friends = response.data.friends;
+        } 
+
+        setUser({
+          ...user,
+          friends,
+        });
+    
+      }
+      setLoading(false);
+    };
+    getUser();
   }, []);
 
   const updateProfile = async (userId, name, password, confirmPassword) => {

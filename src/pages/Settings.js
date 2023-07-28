@@ -51,7 +51,7 @@ export const Settings = () => {
     <div className={styles.settings}>
       <div className={styles.imgContainer}>
         <img
-          src="https://cdn-icons-png.flaticon.com/128/2202/2202112.png"
+          src="https://cdn-icons-png.flaticon.com/256/4825/4825038.png"
           alt=""
         />
       </div>
