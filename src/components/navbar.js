@@ -1,10 +1,28 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { searchUsers } from '../api';
 import { useAuth } from '../hooks';
 import styles from '../styles/navbar.module.css';
 
 export const Navbar = () => {
   const auth = useAuth();
 
+  const [results, setResults] = useState([]);
+  const [searchText, setSearchText] = useState('');
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const response = await searchUsers(searchText);
+      if (response.success) {
+        setResults(response.data.users);
+      }
+    };
+    if (searchText.length > 2) {
+      fetchUsers();
+    } else {
+      setResults([]);
+    }
+  }, [searchText]);
   return (
     <div className={styles.nav}>
       <div className={styles.leftDiv}>
@@ -14,6 +32,40 @@ export const Navbar = () => {
             src="https://ninjasfiles.s3.amazonaws.com/0000000000003454.png"
           />
         </Link>
+      </div>
+
+      <div className={styles.searchContainer}>
+        <img
+          className={styles.searchIcon}
+          src="https://cdn-icons-png.flaticon.com/128/3917/3917754.png"
+          alt="search-icon"
+        />
+        <input
+          placeholder="Search Codeial Users"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+
+        {results.length > 0 && (
+          <div className={styles.searchResults}>
+            <ul>
+              {results.map((user) => (
+                <li
+                  className={styles.searchResultsRow}
+                  key={`user-${user._id}`}
+                >
+                  <Link to={`/user/${user._id}`}>
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/256/4825/4825038.png"
+                      alt="user-dp"
+                    />
+                    <span>{user.name}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
 
       <div className={styles.rightNav}>

@@ -9,8 +9,9 @@ import { Comment } from './comment';
 
 export const Post = ({ post }) => {
   const [comment, setComment] = useState('');
-  const [creatingComment, setCreatingComment] = useState(false);
+  const [setCreatingComment] = useState(false);
   const posts = usePosts();
+
   const { addToast } = useToasts();
 
   const handleAddComment = async (e) => {
