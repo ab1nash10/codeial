@@ -15,6 +15,8 @@ export const Signup = () => {
   const auth = useAuth();
   const navigate = useNavigate();
 
+
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setSigningUp(true);

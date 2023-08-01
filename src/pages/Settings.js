@@ -5,6 +5,8 @@ import { useToasts } from 'react-toast-notifications';
 
 export const Settings = () => {
   const auth = useAuth();
+
+
   const [editMode, setEditMode] = useState(false);
   const [editName, setEditName] = useState(
     auth.user?.name ? auth.user.name : ''

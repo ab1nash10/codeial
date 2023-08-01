@@ -60,7 +60,6 @@ export const login = (email, password) => {
   });
 };
 
-
 export const register = (name, email, password, confirmPassword) => {
   return customFetch(API_URLS.signup(), {
     method: 'POST',
@@ -71,22 +70,19 @@ export const register = (name, email, password, confirmPassword) => {
       confirm_password: confirmPassword,
     },
   });
-}
+};
 
-
-export const editProfile = (userId ,name, password, confirmPassword) => {
+export const editProfile = (userId, name, password, confirmPassword) => {
   return customFetch(API_URLS.editUser(), {
     method: 'POST',
     body: {
-      id:userId,
+      id: userId,
       name,
       password,
       confirm_password: confirmPassword,
     },
   });
-}
-
-
+};
 
 export const fetchUser = (userId) => {
   return customFetch(API_URLS.userInfo(userId), {
@@ -94,9 +90,40 @@ export const fetchUser = (userId) => {
   });
 };
 
-
 export const fetchUserfriends = () => {
-  return customFetch( API_URLS.friends(), {
+  return customFetch(API_URLS.friends(), {
     method: 'GET',
+  });
+};
+
+export const addFriend = (userId) => {
+  return customFetch(API_URLS.createFriendship(userId), {
+    method: 'POST',
+  });
+};
+
+export const removeFriend = (userId) => {
+  return customFetch(API_URLS.removeFriend(userId), {
+    method: 'POST',
+  });
+};
+
+export const addPost = (content) => {
+  return customFetch(API_URLS.createPost(), {
+    method: 'POST',
+    body: {
+      content,
+    },
+  });
+};
+
+
+export const createComment = async (content, postId) => {
+  return customFetch(API_URLS.comment(), {
+    method: 'POST',
+    body: {
+      post_id: postId,
+      content,
+    },
   });
 };
