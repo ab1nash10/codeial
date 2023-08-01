@@ -1,7 +1,7 @@
-import styles from '../styles/home.module.css';
-import { Loader, FriendList, CreatePost } from '../components';
-import { useAuth, usePosts } from '../hooks';
+import { CreatePost, FriendList, Loader } from '../components';
 import { Post } from '../components/Post';
+import { useAuth, usePosts } from '../hooks';
+import styles from '../styles/home.module.css';
 
 const Home = () => {
   const auth = useAuth();
@@ -10,13 +10,12 @@ const Home = () => {
     return <Loader />;
   }
 
-
   return (
     <div className={styles.home}>
       <div className={styles.postsList}>
         <CreatePost />
         {posts.data.map((post) => (
-          < Post post={post} key={post._id} />
+          <Post post={post} key={post._id} />
         ))}
         ;
       </div>
@@ -24,7 +23,5 @@ const Home = () => {
     </div>
   );
 };
-
-
 
 export default Home;

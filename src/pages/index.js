@@ -4,6 +4,4 @@ import { Settings } from './Settings';
 import { Signup } from './SignUp';
 import { UserProfile } from './UserProfile';
 
-
-
-export { Home, Login , Settings, Signup , UserProfile };
+export { Home, Login, Settings, Signup, UserProfile };

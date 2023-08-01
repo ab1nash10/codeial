@@ -15,8 +15,6 @@ export const Signup = () => {
   const auth = useAuth();
   const navigate = useNavigate();
 
-
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setSigningUp(true);
@@ -64,7 +62,7 @@ export const Signup = () => {
   };
 
   if (auth.user) {
-   return <Navigate to="/" />;
+    return <Navigate to="/" />;
   }
   return (
     <form className={styles.loginForm} onSubmit={handleFormSubmit}>

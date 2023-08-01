@@ -1,5 +1,5 @@
-import styles from '../styles/home.module.css';
 import PropTypes from 'prop-types';
+import styles from '../styles/home.module.css';
 
 export const Comment = ({ comment }) => {
   return (

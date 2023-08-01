@@ -1,18 +1,17 @@
-import styles from '../styles/login.module.css';
 import { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import { useAuth } from '../hooks';
-import { Navigate } from 'react-router-dom';
+import styles from '../styles/login.module.css';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [logging, setLoggingIn] = useState(false);
   const { addToast } = useToasts();
-  
+
   const auth = useAuth();
   console.log('auth', auth);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,14 +25,15 @@ export const Login = () => {
     console.log('response', response);
 
     if (response.success) {
-      addToast('Login Successful!', { appearance: 'success' , });
+      addToast('Login Successful!', { appearance: 'success' });
     } else {
-      addToast(response.message, { appearance: 'error' , });
+      addToast(response.message, { appearance: 'error' });
     }
     setLoggingIn(false);
   };
 
-  if(auth.user) {return <Navigate to="/" />;
+  if (auth.user) {
+    return <Navigate to="/" />;
   }
   return (
     <form className={styles.loginForm} onSubmit={handleSubmit}>

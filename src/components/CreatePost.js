@@ -1,15 +1,14 @@
 import { useState } from 'react';
-import styles from '../styles/home.module.css';
-import { addPost } from '../api';
 import { useToasts } from 'react-toast-notifications';
+import { addPost } from '../api';
 import { usePosts } from '../hooks';
+import styles from '../styles/home.module.css';
 
 export const CreatePost = () => {
   const [post, setPost] = useState([]);
   const [addingPost, setAddingPost] = useState(false);
   const { addToast } = useToasts();
   const posts = usePosts();
-
 
   const handleAddPostClick = async () => {
     setAddingPost(true);

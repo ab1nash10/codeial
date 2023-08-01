@@ -1,11 +1,10 @@
-import styles from '../styles/settings.module.css';
-import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { addFriend, fetchUser, removeFriend } from '../api';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
-import { useNavigate } from 'react-router-dom';
+import { addFriend, fetchUser, removeFriend } from '../api';
 import { Loader } from '../components';
 import { useAuth } from '../hooks';
+import styles from '../styles/settings.module.css';
 export const UserProfile = () => {
   const { addToast } = useToasts();
   const [user, setUser] = useState({});

@@ -1,6 +1,6 @@
-import styles from '../styles/home.module.css';
-import { useAuth } from '../hooks';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../hooks';
+import styles from '../styles/home.module.css';
 export const FriendList = () => {
   const auth = useAuth();
   const { friends = [] } = auth.user;

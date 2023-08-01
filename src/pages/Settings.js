@@ -1,11 +1,10 @@
-import styles from '../styles/settings.module.css';
-import { useAuth } from '../hooks';
 import { useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
+import { useAuth } from '../hooks';
+import styles from '../styles/settings.module.css';
 
 export const Settings = () => {
   const auth = useAuth();
-
 
   const [editMode, setEditMode] = useState(false);
   const [editName, setEditName] = useState(
@@ -28,21 +27,31 @@ export const Settings = () => {
       addToast('Please fill all the fields!', { appearance: 'error' });
       error = true;
     }
-    if(editPassword !== editConfirmPassword){
-      addToast('Password and Confirm Password should be same!', { appearance: 'error' });
-    error = true;
+    if (editPassword !== editConfirmPassword) {
+      addToast('Password and Confirm Password should be same!', {
+        appearance: 'error',
+      });
+      error = true;
     }
 
     if (error) {
-       return setSave(false);}
+      return setSave(false);
+    }
 
-    const response = await auth.updateProfile(auth.user._id, editName, editPassword, editConfirmPassword);
-    if(response.success){
+    const response = await auth.updateProfile(
+      auth.user._id,
+      editName,
+      editPassword,
+      editConfirmPassword
+    );
+    if (response.success) {
       setEditMode(false);
       setSave(false);
       clearForm();
-      return addToast('Profile Updated Successfully!', { appearance: 'success' });
-    }else{  
+      return addToast('Profile Updated Successfully!', {
+        appearance: 'success',
+      });
+    } else {
       addToast(response.message, { appearance: 'error' });
     }
 
@@ -103,7 +112,6 @@ export const Settings = () => {
             <button
               className={`button ${styles.saveBtn}`}
               onClick={() => updateProfile()}
-             
             >
               {Save ? 'Saving Profile...' : 'Save Profile'}
             </button>

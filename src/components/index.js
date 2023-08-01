@@ -1,8 +1,8 @@
 import App from './App';
+import { CreatePost } from './CreatePost';
+import { FriendList } from './FriendList';
+import { Comment } from './comment';
 import { Loader } from './loader';
 import { Navbar } from './navbar';
-import { Comment } from './comment';
-import { FriendList } from './FriendList';
-import { CreatePost } from './CreatePost';
 
-export { App, Loader, Navbar, Comment, FriendList, CreatePost };
+export { App, Comment, CreatePost, FriendList, Loader, Navbar };

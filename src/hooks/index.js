@@ -7,14 +7,14 @@ import {
   login as userLogin,
 } from '../api';
 
+import jwt from 'jwt-decode';
 import { AuthContext, PostsContext } from '../providers';
 import {
   LOCALSTORAGE_TOKEN_KEY,
+  getItemInLocalStorage,
   removeItemInLocalStorage,
   setItemInLocalStorage,
-  getItemInLocalStorage,
 } from '../utils';
-import jwt from 'jwt-decode';
 
 export const useAuth = () => {
   return useContext(AuthContext);
@@ -124,7 +124,6 @@ export const useProvideAuth = () => {
       ...user,
       friends: newFriends,
     });
-
   };
 
   return {
@@ -138,12 +137,9 @@ export const useProvideAuth = () => {
   };
 };
 
-
-
 export const usePosts = () => {
   return useContext(PostsContext);
 };
-
 
 export const useProvidePosts = () => {
   const [posts, setPosts] = useState(null);
@@ -166,23 +162,22 @@ export const useProvidePosts = () => {
   const addPostToState = (post) => {
     const newPosts = [post, ...posts];
     setPosts(newPosts);
-
   };
 
   const addComment = (comment, postId) => {
     const newPosts = posts.map((post) => {
       if (post._id === postId) {
-        return { ...post, comments: [...post.comments, comment] }
+        return { ...post, comments: [...post.comments, comment] };
       }
       return post;
-    })
+    });
     setPosts(newPosts);
-  }
+  };
 
   return {
     data: posts,
     loading,
     addPostToState,
-    addComment
-  }
-}
+    addComment,
+  };
+};
